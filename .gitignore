@@ -18,4 +18,5 @@ notebook.ipynb
 crash.log
 terraform.tfvars
 
-
+#secrets
+kestra-gcp-sa.json
