@@ -1,5 +1,8 @@
 sources:
   - name: wk1_tf_dataset
+    description: >
+      This dataset contains raw trip records for yellow taxis, green taxis, and for-hire vehicles (FHVs) in New York City. 
+      Each source table corresponds to a different mode of transportation and includes various attributes such as pickup and dropoff times, locations, fare amounts, and more.
     database: dlt-bigquery-484316
     schema: wk1_tf_dataset
     tables:

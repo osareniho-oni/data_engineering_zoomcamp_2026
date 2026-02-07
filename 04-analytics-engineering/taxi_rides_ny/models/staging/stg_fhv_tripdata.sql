@@ -7,18 +7,26 @@ with source as (
 renamed as (
 
     select
-        unique_row_id,
-        filename,
-        dispatching_base_num,
-        pickup_datetime,
-        dropoff_datetime,
-        pulocationid,
-        dolocationid,
-        sr_flag,
-        affiliated_base_number
+        -- identifiers
+        cast(dispatching_base_num as string) as dispatching_base_num,
+        cast(pulocationid as integer) as pickup_location_id,
+        cast(dolocationid as integer) as dropoff_location_id,
+        {{ dbt.safe_cast('sr_flag', 'boolean') }} as sr_flag,
+        cast(affiliated_base_number as string) as affiliated_base_number,
+        
+        -- timestamps
+        cast(pickup_datetime as timestamp) as pickup_datetime,
+        cast(dropoff_datetime as timestamp) dropoff_datetime
 
     from source
+    -- Filter out records with null dispatching_base_num (data quality requirement)
+    where dispatching_base_num is not null
 
 )
 
 select * from renamed
+
+-- Sample records for dev environment using deterministic date filter
+{% if target.name == 'dev' %}
+where pickup_datetime >= '2019-01-01' and pickup_datetime < '2019-02-01'
+{% endif %}
