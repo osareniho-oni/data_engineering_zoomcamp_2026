@@ -30,3 +30,5 @@ logs/queries
 
 
 05-data-platforms1
+
+duckdb.db
