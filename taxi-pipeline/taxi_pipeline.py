@@ -6,18 +6,24 @@ from dlt.sources.rest_api import rest_api_source
 def taxi_source():
     config = {
         "client": {
-            "base_url": "https://us-central1-dlthub-analytics.cloudfunctions.net/data_engineering_zoomcamp_api"
-        },
-        "resource_defaults": {
-            "endpoint": {
-                "params": {
-                    "limit": 1000,
-                },
-            },
+            "base_url": "https://us-central1-dlthub-analytics.cloudfunctions.net",
+            "headers": {
+                 "Content-Type": "application/json"
+            }
         },
         "resources": [
-            "taxi",
-        ],
+            {
+                "name": "taxi",
+                "endpoint": {
+                    "path": "data_engineering_zoomcamp_api",
+                    "paginator": {
+                        "type": "page_number",
+                        "base_page": 1,
+                        "total_path": None # Stops when an empty page is returned
+                    }
+                }
+            }
+        ]
     }
 
     return rest_api_source(config)

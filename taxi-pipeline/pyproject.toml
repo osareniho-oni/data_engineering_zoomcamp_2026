@@ -7,3 +7,7 @@ requires-python = ">=3.13"
 dependencies = [
     "dlt[workspace]>=1.22.0",
 ]
+[tool.marimo.datasources]
+auto_discover_schemas = true   # Default: true
+auto_discover_tables = "auto"   # Default: "auto"
+auto_discover_columns = "auto"  # Default: false
