@@ -40,20 +40,6 @@ nyc_taxi_parent (parent flow)
 - ✅ **Pros:** Better separation of concerns, easier debugging, reusable components
 - ⚠️ **Cons:** More files to manage, slightly more complex orchestration
 
-### 2. **GCP Authentication: Direct Mount vs KV Store**
-**My Implementation:**
-- Service account JSON mounted directly via Docker volume
-- Uses `GOOGLE_APPLICATION_CREDENTIALS` environment variable
-- No KV store configuration needed
-
-**Tutorial Implementation:**
-- Uses Kestra's KV (Key-Value) store for credentials
-- Requires `{{kv('GCP_CREDS')}}` in workflow files
-
-**Tradeoff:**
-- ✅ Direct mount is simpler for local development
-- ✅ No need to configure KV store
-- ⚠️ KV store is better for production (centralized secrets management)
 
 ### 3. **Data Format: Parquet vs CSV**
 **My Implementation:**
