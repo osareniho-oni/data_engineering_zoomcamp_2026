@@ -8,7 +8,7 @@
 
 ## 📚 About This Repository
 
-This repository documents my hands-on learning experience in modern data engineering practices, tools, and technologies. Each module represents a critical component of the data engineering ecosystem, from containerization and infrastructure-as-code to advanced analytics and batch processing.
+This repository documents my hands-on learning experience in modern data engineering practices, tools, and technologies. Each module represents a critical component of the data engineering ecosystem, from containerization and infrastructure-as-code to real-time streaming and advanced analytics.
 
 ## 🎯 Learning Objectives
 
@@ -18,6 +18,7 @@ This repository documents my hands-on learning experience in modern data enginee
 - **Data Quality & Governance**: Implement comprehensive testing and validation frameworks
 - **Analytics Engineering**: Transform raw data into business-ready insights using dbt
 - **Distributed Processing**: Process large-scale datasets with Apache Spark
+- **Real-Time Streaming**: Build event-driven architectures with Kafka and Flink
 
 ## 📂 Repository Structure
 
@@ -29,6 +30,8 @@ de_zc_2026/
 ├── 04-analytics-engineering/     # Week 4: dbt & Analytics Engineering
 ├── 05-data-platforms/            # Week 5: Modern Data Platforms with Bruin
 ├── 06-batch/                     # Week 6: Batch Processing with Spark
+├── 07-streaming/                 # Week 7: Stream Processing with Kafka & Flink
+├── dlt-workshop-taxi-pipeline/   # Workshop: Data Loading with dlt
 └── README.md                     # This file
 ```
 
@@ -193,6 +196,69 @@ taxi_rides_ny/
 
 ---
 
+### [Week 7: Stream Processing](./07-streaming/)
+**Focus**: Real-Time Data Processing, Event Streaming, Stream Analytics
+
+**Key Technologies**: Apache Kafka (Redpanda), Apache Flink (PyFlink), PostgreSQL, Docker
+
+**Skills Developed**:
+- Event-driven architecture design
+- Real-time data streaming with Kafka
+- Stream processing with Apache Flink
+- Window aggregations (tumbling, sliding, session)
+- Stateful stream processing
+- Producer-consumer patterns
+
+**Deliverables**:
+- Complete streaming pipeline (Producer → Kafka → Flink → PostgreSQL)
+- Real-time NYC taxi data processing
+- Window-based aggregations and analytics
+- Automated pipeline deployment scripts
+- Stream processing job monitoring
+
+**Architecture**:
+```
+Producer (Python) → Kafka (Redpanda) → Flink → PostgreSQL
+```
+
+**Highlights**:
+- ✅ Real-time event processing with sub-second latency
+- ✅ Windowed aggregations for time-based analytics
+- ✅ Stateful processing with checkpointing
+- ✅ Automated deployment with Docker Compose
+- ✅ Production-ready monitoring and observability
+
+---
+
+### [Workshop: Data Loading with dlt](./dlt-workshop-taxi-pipeline/)
+**Focus**: Modern Data Ingestion, Schema Inference, Incremental Loading
+
+**Key Technologies**: dlt (Data Load Tool), DuckDB, Python, REST APIs
+
+**Skills Developed**:
+- Declarative data pipeline design
+- Automatic schema inference and evolution
+- REST API integration with pagination
+- Incremental loading strategies
+- Multi-destination data loading
+- Pipeline observability and monitoring
+
+**Deliverables**:
+- dlt-powered data ingestion pipeline
+- REST API source configuration
+- DuckDB local analytics database
+- Comprehensive pipeline documentation
+- Query examples and analysis notebooks
+
+**Key Features**:
+- ✅ Zero-config schema inference
+- ✅ Automatic pagination handling
+- ✅ Built-in data validation
+- ✅ Multiple destination support (DuckDB, BigQuery, Snowflake)
+- ✅ Python-native, decorator-based API
+
+---
+
 ## 🛠️ Technology Stack
 
 ### Core Technologies
@@ -202,6 +268,8 @@ taxi_rides_ny/
 | **Orchestration** | Kestra, Bruin |
 | **Data Warehouses** | BigQuery, DuckDB |
 | **Analytics** | dbt, Spark |
+| **Streaming** | Kafka (Redpanda), Apache Flink |
+| **Data Loading** | dlt (Data Load Tool) |
 | **Infrastructure** | Docker, Terraform, GCP |
 | **Version Control** | Git, GitHub |
 
@@ -222,6 +290,7 @@ taxi_rides_ny/
 - Git
 - GCP Account (with billing enabled)
 - Terraform (optional)
+- uv (Python package manager)
 ```
 
 ### Quick Setup
@@ -245,6 +314,8 @@ cd 01-docker-terraform  # or any other week
 - ✅ **Cloud Infrastructure**: Deployed production-ready systems on GCP
 - ✅ **Analytics Engineering**: Built dimensional models with dbt
 - ✅ **Distributed Computing**: Processed 100M+ records with Spark
+- ✅ **Real-Time Processing**: Built event-driven streaming architectures
+- ✅ **Modern Data Loading**: Implemented declarative pipelines with dlt
 
 ### Best Practices
 - ✅ **Idempotency**: All pipelines support safe re-runs
@@ -253,17 +324,19 @@ cd 01-docker-terraform  # or any other week
 - ✅ **Version Control**: Git-based workflow with meaningful commits
 - ✅ **Testing**: Automated quality checks at every layer
 - ✅ **Cost Optimization**: Partitioning and incremental processing
+- ✅ **Observability**: Monitoring and logging for all pipelines
 
 ## 📈 Project Metrics
 
 | Metric | Value |
 |--------|-------|
-| **Total Modules** | 6 weeks |
+| **Total Modules** | 7 weeks + 1 workshop |
 | **Data Processed** | 100M+ records |
-| **Technologies Used** | 15+ tools |
-| **Code Files** | 50+ assets |
-| **Quality Checks** | 50+ automated tests |
-| **Documentation** | 2000+ lines |
+| **Technologies Used** | 20+ tools |
+| **Code Files** | 100+ assets |
+| **Quality Checks** | 75+ automated tests |
+| **Documentation** | 5000+ lines |
+| **Pipeline Types** | Batch, Streaming, Real-time |
 
 ## 🎓 Learning Outcomes
 
@@ -272,24 +345,35 @@ cd 01-docker-terraform  # or any other week
 - Data modeling and schema design
 - ETL/ELT pattern implementation
 - Data quality and validation strategies
+- Real-time vs batch processing trade-offs
 
 ### Cloud & Infrastructure
 - GCP service integration
 - Infrastructure as Code with Terraform
 - Container orchestration with Docker
 - Service account and IAM management
+- Distributed system deployment
 
 ### Analytics & Reporting
 - Dimensional modeling techniques
 - Incremental processing strategies
 - Business metric calculation
 - Dashboard-ready data preparation
+- Real-time analytics and aggregations
 
 ### Software Engineering
 - Version control best practices
 - Code modularity and reusability
 - Documentation standards
 - Testing and validation
+- CI/CD for data pipelines
+
+### Stream Processing
+- Event-driven architecture patterns
+- Message broker configuration
+- Stream processing frameworks
+- Windowing and aggregation strategies
+- Stateful processing and checkpointing
 
 ## 📚 Resources
 
@@ -300,6 +384,8 @@ cd 01-docker-terraform  # or any other week
 - [Bruin Documentation](https://getbruin.com/docs)
 - [BigQuery Documentation](https://cloud.google.com/bigquery/docs)
 - [Apache Spark Documentation](https://spark.apache.org/docs/latest/)
+- [Apache Flink Documentation](https://flink.apache.org/docs/stable/)
+- [dlt Documentation](https://dlthub.com/docs)
 
 ### Learning Materials
 - [NYC TLC Trip Record Data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
@@ -321,7 +407,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 **Data Engineering Enthusiast | Analytics Professional**
 
-This repository represents my journey in mastering modern data engineering practices. I'm passionate about building scalable, maintainable data systems that drive business value.
+This repository represents my journey in mastering modern data engineering practices. I'm passionate about building scalable, maintainable data systems that drive business value through both batch and real-time processing.
 
 **Connect with me:**
 - LinkedIn: [linkedin.com/in/Osareniho-oni](https://linkedin.com/in/Osareniho-oni)
@@ -331,6 +417,7 @@ This repository represents my journey in mastering modern data engineering pract
 
 - **DataTalks.Club** for creating and maintaining the Data Engineering Zoomcamp
 - **Alexey Grigorev** and the instructor team for excellent course content
+- **Zach Wilson** for the streaming workshop
 - The **data engineering community** for continuous support and knowledge sharing
 - **NYC TLC** for providing open data for learning purposes
 
@@ -340,6 +427,6 @@ This repository represents my journey in mastering modern data engineering pract
 
 **⭐ If you find this repository helpful, please consider giving it a star! ⭐**
 
-*Last Updated: February 2026*
+*Last Updated: March 2026*
 
 </div>
