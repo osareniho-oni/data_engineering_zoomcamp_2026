@@ -5,8 +5,18 @@
 
 set -e  # Exit on any error
 
+# Parse command line arguments
+TOPIC_TYPE="${1:-yellow}"  # Default to yellow if no argument provided
+
+if [ "$TOPIC_TYPE" != "yellow" ] && [ "$TOPIC_TYPE" != "green" ]; then
+    echo "Error: Invalid topic type. Use 'yellow' or 'green'"
+    echo "Usage: $0 [yellow|green]"
+    exit 1
+fi
+
 echo "=========================================="
 echo "Starting Streaming Pipeline Setup"
+echo "Topic Type: $TOPIC_TYPE"
 echo "=========================================="
 echo ""
 
@@ -79,7 +89,13 @@ echo ""
 
 # Step 7: Run the producer
 echo "Step 7: Running producer to send data..."
-uv run python src/producers/producer.py
+if [ "$TOPIC_TYPE" = "yellow" ]; then
+    echo "Running yellow taxi producer (rides topic)..."
+    uv run python src/producers/producer.py
+elif [ "$TOPIC_TYPE" = "green" ]; then
+    echo "Running green taxi producer (green-trips topic)..."
+    uv run python src/producers/producer_green.py
+fi
 echo "✓ Producer completed"
 echo ""
 
@@ -108,4 +124,8 @@ echo "Next steps:"
 echo "1. Check Flink dashboard: http://localhost:8081"
 echo "2. Query data: docker compose exec postgres psql -U postgres -d postgres"
 echo "3. View sample data: SELECT * FROM processed_events LIMIT 10;"
+echo ""
+echo "To run with different topic:"
+echo "  ./run_pipeline.sh yellow  # For yellow taxi data (rides topic)"
+echo "  ./run_pipeline.sh green   # For green taxi data (green-trips topic)"
 echo ""
